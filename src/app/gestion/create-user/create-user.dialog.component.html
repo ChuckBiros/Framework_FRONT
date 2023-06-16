@@ -1,0 +1,19 @@
+<form [formGroup]="utilisateurForm" (ngSubmit)="onSubmit()">
+    <button mat-button (click)="close()"><i class="fas fa-times"></i></button>
+    <div>
+        <label for="nom">Nom</label>
+        <input type="text" id="nom" [formControl]="nomFormControl">
+        <div *ngIf="nomFormControl.invalid && nomFormControl.touched">
+            <div *ngIf="nomFormControl.errors?.['required']">Le nom est requis</div>
+        </div>
+    </div>
+    <div>
+        <label for="email">Email</label>
+        <input type="email" id="email" [formControl]="emailFormControl">
+        <div *ngIf="emailFormControl.invalid && emailFormControl.touched">
+            <div *ngIf="emailFormControl.errors?.['required']">L'email est requis</div>
+            <div *ngIf="emailFormControl.errors?.['email']">L'email est invalide</div>
+        </div>
+    </div>
+    <button type="submit" [disabled]="utilisateurForm.invalid">Créer</button>
+</form>

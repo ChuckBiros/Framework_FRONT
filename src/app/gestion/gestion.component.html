@@ -1,0 +1,45 @@
+<h2>Utilisateurs</h2>
+
+<ul>
+
+    <li *ngFor="let utilisateur of utilisateurs">
+        <a class="nav-link" aria-current="page" (click)="openDetail(utilisateur)">
+            {{ utilisateur.nom }} ({{ utilisateur.email }})
+        </a>
+        <span class="delete-icon" (click)="supprimerUtilisateur(utilisateur.id)"><i class="fas fa-times"></i></span>
+    </li>
+
+</ul>
+<button (click)="openUserDialog()">Ajouter un utilisateur</button>
+
+<h2>Dépenses</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Montant</th>
+            <th>Description</th>
+            <th>Utilisateur</th>
+            <th>Catégorie</th>
+            <th>Date Paiement</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let depense of depenses">
+            <td>{{ depense.montant }} €</td>
+            <td>{{ depense.description }}</td>
+            <td>{{ getUtilisateurName(depense.utilisateur_id) }}</td>
+            <td>{{ getCategorieName(depense.categorie_id) }}</td>
+            <td>{{ depense.date_paiement | date:"dd/MM/yyyy" }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<button (click)="openDepenseDialog()">Ajouter une dépense</button>
+
+<h2>Catégories</h2>
+<ul>
+    <li *ngFor="let categorie of categories">
+        {{ categorie.nom }}
+    </li>
+</ul>
+<button>Ajouter une catégorie</button>

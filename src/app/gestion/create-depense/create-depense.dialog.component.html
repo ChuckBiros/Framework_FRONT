@@ -1,0 +1,58 @@
+<form [formGroup]="depenseFormGroup" (ngSubmit)="onSubmit()">
+    <button mat-button (click)="close()"><i class="fas fa-times"></i></button>
+    <div>
+        <label for="montant">Montant:</label>
+        <input type="number" id="montant" [formControl]="montantFormControl">
+        <div *ngIf="montantFormControl.invalid && montantFormControl.touched">
+            Le montant est requis.
+        </div>
+    </div>
+
+    <div>
+        <label for="description">Description:</label>
+        <input type="text" id="description" [formControl]="descriptionFormControl">
+        <div *ngIf="descriptionFormControl.invalid && descriptionFormControl.touched">
+            La description est requise.
+        </div>
+    </div>
+
+    <div>
+        <label for="utilisateur">Utilisateur qui a payé:</label>
+        <select id="utilisateur" [formControl]="utilisateurIdFormControl">
+            <option value="">Sélectionnez l'utilisateur qui a payé</option>
+            <!-- Boucle sur la liste des utilisateurs pour afficher les options -->
+            <option *ngFor="let utilisateur of utilisateurs" [value]="utilisateur.id">
+                {{ utilisateur.nom }}
+            </option>
+        </select>
+        <div *ngIf="utilisateurIdFormControl.invalid && utilisateurIdFormControl.touched">
+            L'utilisateur est requis.
+        </div>
+    </div>
+
+    <div>
+        <label for="categorie">Catégorie:</label>
+        <select id="categorie" [formControl]="categorieIdFormControl">
+            <option value="">Sélectionnez une catégorie</option>
+            <!-- Boucle sur la liste des catégories pour afficher les options -->
+            <option *ngFor="let categorie of categories" [value]="categorie.id">
+                {{ categorie.nom }}
+            </option>
+        </select>
+        <div *ngIf="categorieIdFormControl.invalid && categorieIdFormControl.touched">
+            La catégorie est requise.
+        </div>
+    </div>
+
+    <div>
+        <label for="date">Date:</label>
+        <input matInput [matDatepicker]="picker" [formControl]="datePaiementFormControl">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <div *ngIf="datePaiementFormControl.invalid && datePaiementFormControl.touched">
+            La date est requise.
+        </div>
+    </div>
+
+    <button type="submit" [disabled]="depenseFormGroup.invalid">Créer la dépense</button>
+</form>

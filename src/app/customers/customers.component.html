@@ -1,0 +1,9 @@
+<div *ngIf="state">
+    <p>{{ state.utilisateur.nom }}</p>
+
+    <h2>Tous les paiements de la colocation : {{ sumAllPaiements }} €</h2>
+
+    <h2>Tous les paiements de l'utilisateur : {{ sumUserPaiements }} €</h2>
+
+    <h2>Reste à charge de l'utilisateur : {{ sumUserPaiements - sumAllPaiements }} €</h2>
+</div>
